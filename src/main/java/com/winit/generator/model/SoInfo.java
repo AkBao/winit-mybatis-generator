@@ -1,16 +1,11 @@
 package com.winit.generator.model;
 
 
-public class DaoInfo {
+public class SoInfo {
     /**
      * 包路径
      */
     private String packageStr;
-    
-    /**
-     * 需要导入的包
-     */
-    private String importStr;
     
     /**
      * 类名
@@ -18,14 +13,9 @@ public class DaoInfo {
     private String className;
     
     /**
-    * 实体信息
-    */
-    private EntityInfo entityInfo;
-
-    /**
-     * 查询对象
+     * 实体信息
      */
-    private SoInfo soInfo;
+     private EntityInfo entityInfo;
 
     
     public String getPackageStr() {
@@ -35,16 +25,6 @@ public class DaoInfo {
     
     public void setPackageStr(String packageStr) {
         this.packageStr = packageStr;
-    }
-
-    
-    public String getImportStr() {
-        return importStr;
-    }
-
-    
-    public void setImportStr(String importStr) {
-        this.importStr = importStr;
     }
 
     
@@ -65,13 +45,5 @@ public class DaoInfo {
     
     public void setEntityInfo(EntityInfo entityInfo) {
         this.entityInfo = entityInfo;
-    }
-
-    public SoInfo getSoInfo() {
-        return soInfo;
-    }
-
-    public void setSoInfo(SoInfo soInfo) {
-        this.soInfo = soInfo;
     }
 }

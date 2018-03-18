@@ -25,7 +25,9 @@ public class Constants {
     public static String MAPPER_XML_SUFFIX = "Mapper";
     
     public static String VO_SUFFIX = "Vo";
-    
+
+    public static String SO_SUFFIX = "So";
+
     public static String MANAGER_SUFFIX = "Manager";
     
     public static String MANAGER_IMPL_SUFFIX = "ManagerImpl";

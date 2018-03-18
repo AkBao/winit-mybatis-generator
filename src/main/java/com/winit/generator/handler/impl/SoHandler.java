@@ -7,28 +7,30 @@ import java.util.Map.Entry;
 import com.winit.generator.config.Configuration;
 import com.winit.generator.handler.BaseHandler;
 import com.winit.generator.model.EntityInfo;
+import com.winit.generator.model.SoInfo;
 
-public class EntityHandler extends BaseHandler<EntityInfo> {
-    
-    public EntityHandler(String ftlName, EntityInfo info) {
+public class SoHandler extends BaseHandler<SoInfo> {
+
+
+    public SoHandler(String ftlName, SoInfo info){
         this.ftlName = ftlName;
         this.info = info;
         this.savePath = Configuration.getString("base.baseDir") 
-                + File.separator + Configuration.getString("entity.path")
+                + File.separator + Configuration.getString("so.path")
                 + File.separator + info.getClassName() + ".java";
-        
     }
-    
+
     @Override
-    public void combileParams(EntityInfo entityInfo) {
-        this.param.put("packageStr", entityInfo.getEntityPackage());
+    public void combileParams(SoInfo info) {
+        EntityInfo entityInfo = info.getEntityInfo();
+        this.param.put("packageStr", info.getPackageStr());
         StringBuilder sb = new StringBuilder();
         for (String str : entityInfo.getImports()) {
             sb.append("import ").append(str).append(";\r\n");
         }
         this.param.put("importStr", sb.toString());
         this.param.put("entityDesc", entityInfo.getEntityDesc());
-        this.param.put("className", entityInfo.getClassName());
+        this.param.put("className", info.getClassName());
         
         //生成属性，getter,setter方法
         sb = new StringBuilder();
@@ -39,7 +41,7 @@ public class EntityHandler extends BaseHandler<EntityInfo> {
             String propType = entry.getValue();
             
             //注释、类型、名称
-            sb.append("    /*").append(propRemarks.get(propName)).append(" **/\r\n")
+            sb.append("    /*").append(propRemarks.get(propName)).append("*/\r\n")
             .append("    private ").append(propType).append(" ").append(propName)
             .append(";\r\n");
             
@@ -57,7 +59,6 @@ public class EntityHandler extends BaseHandler<EntityInfo> {
         
         this.param.put("propertiesStr", sb.toString());
         this.param.put("methodStr", sbMethods.toString());
-        
-        
     }
+
 }
